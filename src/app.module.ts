@@ -15,12 +15,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: String(process.env.DB_HOST || 'localhost'),
+      extra: {
+        ipv6: false,
+      },
       port: parseInt(String(process.env.DB_PORT || '5432'), 10),
       username: String(process.env.DB_USERNAME || 'postgres'),
       password: String(process.env.DB_PASSWORD || 'password'),
       database: String(process.env.DB_NAME || 'bike_shop'),
       autoLoadEntities: true,
-      synchronize: true, // Set to false in production
+      synchronize: true, // Set to false in
     }),
     ProductsModule,
     SuppliersModule,
